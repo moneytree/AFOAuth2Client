@@ -106,8 +106,8 @@
                               username:(NSString *)username
                               password:(NSString *)password
                                  scope:(NSString *)scope
-                               success:(void (^)(AFOAuthCredential *credential))success
-                               failure:(void (^)(NSError *error))failure;
+                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))uccess
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure;
 
 /**
  Creates and enqueues an `AFHTTPRequestOperation` to authenticate against the server with a designated scope.
@@ -119,8 +119,8 @@
  */
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                                  scope:(NSString *)scope
-                               success:(void (^)(AFOAuthCredential *credential))success
-                               failure:(void (^)(NSError *error))failure;
+                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  Creates and enqueues an `AFHTTPRequestOperation` to authenticate against the server using the specified refresh token.
@@ -132,8 +132,8 @@
  */
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                           refreshToken:(NSString *)refreshToken
-                               success:(void (^)(AFOAuthCredential *credential))success
-                               failure:(void (^)(NSError *error))failure;
+                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  Creates and enqueues an `AFHTTPRequestOperation` to authenticate against the server with an authorization code, redirecting to a specified URI upon successful authentication.
@@ -147,8 +147,8 @@
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                                   code:(NSString *)code
                            redirectURI:(NSString *)uri
-                               success:(void (^)(AFOAuthCredential *credential))success
-                               failure:(void (^)(NSError *error))failure;
+                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 /**
  Creates and enqueues an `AFHTTPRequestOperation` to authenticate against the server with the specified parameters.
@@ -160,8 +160,8 @@
  */
 - (void)authenticateUsingOAuthWithPath:(NSString *)path
                             parameters:(NSDictionary *)parameters
-                               success:(void (^)(AFOAuthCredential *credential))success
-                               failure:(void (^)(NSError *error))failure;
+                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
 
@@ -192,6 +192,11 @@
  The OAuth refresh token.
  */
 @property (readonly, nonatomic) NSString *refreshToken;
+
+/** 
+ The expired date on the access token.
+ */
+@property (readonly, nonatomic) NSDate *expiration;
 
 /**
  Whether the OAuth credentials are expired.
