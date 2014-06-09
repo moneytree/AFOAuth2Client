@@ -106,7 +106,7 @@
                               username:(NSString *)username
                               password:(NSString *)password
                                  scope:(NSString *)scope
-                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))uccess
+                               success:(void (^)(AFHTTPRequestOperation *operation, AFOAuthCredential *credential))success
                                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure;
 
 /**
